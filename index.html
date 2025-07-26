@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="style.css" />
+  <title>Portfolio</title>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="left">
+      <a href="/">KOPAL SACHAN</a>
+    </div>
+
+    <div class="right">
+      <a href="https://github.com/skopal-05" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i>
+        <span>Github</span>
+      </a>
+      <a href="https://www.linkedin.com/in/kopal-sachan-aa598128a/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="mailto:kopal.sachan05@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- SECTION 1: Hero -->
+    <section class="hero-section">
+      <div class="text">
+        <h2>Hi, I'm Kopal 👋</h2>
+        <p>A Computer Science undergraduate at VIT Vellore with a passion for innovation, technology, and real-world impact. Experienced in cutting-edge domains like Distributed Intelligence in 6G through a research internship at DRDO, with a strong interest in building full-stack web applications using tools like React and MongoDB. Also actively involved in student leadership as HR Manager of the Geo-Spatial Club, while contributing to outreach and innovation initiatives on campus.</p>
+
+        <div class="links">
+          <a href="#skills">
+            <i class="fa-solid fa-code"></i>
+            <span>Skills</span>
+          </a>
+          <a href="#projects-experience">
+            <i class="fa-solid fa-pen"></i>
+            <span>Projects & Experience</span>
+          </a>
+          <a href="#contact">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="headshot">
+        <img src="images/head.jpg" alt="kopal headshot" />
+      </div>
+    </section>
+
+    <!-- SECTION 2: Skills -->
+    <section id="skills" class="skills-section">
+      <h2>Skills</h2>
+      <div class="text">
+        Skilled in both foundational and modern technologies with a focus on full-stack development, programming, and system-level tools.
+      </div>
+      <div class="cells">
+        <div class="cell"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+        <div class="cell"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+        <div class="cell"><i class="fab fa-js"></i><span>JavaScript</span></div>
+        <div class="cell"><i class="fa-brands fa-react"></i><span>React.js</span></div>
+        <div class="cell"><i class="fa-solid fa-laptop-code"></i><span>SQL</span></div>
+        <div class="cell"><i class="fa-brands fa-ubuntu"></i><span>Linux</span></div>
+        <div class="cell"><i class="fa-solid fa-c"></i><span>C</span></div>
+        <div class="cell"><i class="fab fa-cuttlefish">++</i><span>Cpp</span></div>
+        <div class="cell"><i class="fa-brands fa-python"></i><span>Python</span></div>
+        <div class="cell"><i class="fa-brands fa-java"></i><span>Java</span></div>
+        <div class="cell"><i class="fa-brands fa-square-github"></i><span>GitHub</span></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Projects and Experience -->
+    <section id="projects-experience" class="projects-section">
+      <h2>Projects & Experience</h2>
+
+      <div class="projects">
+        <h3>🔧 Projects</h3>
+        <div class="item">
+          <h4>Farmin-GO E-commerce Portal</h4>
+          <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, React, Next.js, MongoDB</p>
+          <p>Developed a full-stack e-commerce portal using React for frontend and MongoDB for backend data storage. The platform features a scalable, responsive design with a user-friendly interface, enabling smooth product browsing and transaction flow.</p>
+        </div>
+      </div>
+
+      <div class="experience">
+        <h3>💼 Experience</h3>
+        <div class="item">
+          <h4>Summer Intern — Defence Electronics Application Laboratory (DEAL), DRDO</h4>
+          <p><strong>Duration:</strong> May 2025 – June 2025 | <strong>Location:</strong> Dehradun, Uttarakhand</p>
+          <ul>
+            <li>Researched Distributed Intelligence in 6G with focus on architecture, frameworks, and defense applications.</li>
+            <li>Analyzed AI/ML at the network edge; compared centralized vs. distributed models in tactical scenarios.</li>
+            <li>Explored Federated Learning for privacy-preserving AI in distributed networks.</li>
+            <li>Compiled a technical report and presented findings to experts and mentors.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Contact -->
+    <section id="contact" class="contact-section">
+      <h2>Contact</h2>
+      <div class="group">
+        <div class="text">
+          Feel free to reach out for collaborations, project ideas, or just to connect over technology and innovation! Whether it’s discussing 6G research, web development, or student-led initiatives — I’m always open to meaningful conversations.
+        </div>
+
+        <form>
+          <div class="form-box">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" />
+
+            <label for="message">Message</label>
+            <textarea id="message" cols="30" rows="8" placeholder="Write your message here..."></textarea>
+
+            <button type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
