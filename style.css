@@ -133,27 +133,38 @@ nav .right a span {
 }
 
 .skills-section .cells .cell {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  width: 200px;
-  padding: 10px 20px;
   margin: 10px;
-  border: 1.5px solid #d3d3d3;
-  border-radius: 5px;
-  background-color: #fff;
+  transition: transform 0.2s;
+  text-align: center;
+  padding: 10px;
 }
 
+.skills-section .cells .cell:hover {
+  transform: translateY(-5px);
+}
+
+.skills-section .cells .cell i,
 .skills-section .cells .cell img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  border-radius: 2px;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  color: var(--text-color);
 }
 
 .skills-section .cells .cell span {
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 /* SECTION 3: Projects & Experience */
