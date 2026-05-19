@@ -471,7 +471,7 @@
 
   <!-- ─── SCRIPTS ─── -->
   <script>
-    // Scroll reveal
+    // ── Scroll reveal ──────────────────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -483,14 +483,109 @@
         }
       });
     }, { threshold: 0.08 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Experience accordion toggle
+    // ── Experience accordion ───────────────────────────────
     function toggleExp(id) {
-      const card = document.getElementById(id);
-      card.classList.toggle('open');
+      document.getElementById(id).classList.toggle('open');
     }
+
+    // ── Detect touch device ───────────────────────────────
+    const isTouch = () => window.matchMedia('(max-width: 740px)').matches || ('ontouchstart' in window);
+
+    // ── Project cards: tap-to-expand on mobile ─────────────
+    // Inject mobile detail panels and tap buttons
+    function initMobileProjects() {
+      document.querySelectorAll('.flip-card').forEach(card => {
+        const back = card.querySelector('.flip-back');
+        if (!back) return;
+
+        // Build mobile detail div if not already there
+        if (!card.querySelector('.mobile-details')) {
+          const details = document.createElement('div');
+          details.className = 'mobile-details';
+          const backP = back.querySelector('p');
+          const backPills = back.querySelector('.tech-pills');
+          if (backP) {
+            const p = document.createElement('p');
+            p.textContent = backP.textContent;
+            details.appendChild(p);
+          }
+          if (backPills) {
+            const pills = backPills.cloneNode(true);
+            pills.classList.remove('light');
+            pills.querySelectorAll('span').forEach(s => {
+              s.style.background = 'rgba(255,255,255,0.18)';
+              s.style.color = '#fff';
+              s.style.borderColor = 'rgba(255,255,255,0.3)';
+            });
+            details.appendChild(pills);
+          }
+          card.appendChild(details);
+        }
+
+        // Inject tap button inside flip-front if not there
+        const front = card.querySelector('.flip-front');
+        if (front && !front.querySelector('.mobile-tap-btn')) {
+          const btn = document.createElement('button');
+          btn.className = 'mobile-tap-btn';
+          btn.innerHTML = '<i class="fa-solid fa-circle-info"></i> Tap for details';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const det = card.querySelector('.mobile-details');
+            const isOpen = det.classList.toggle('open');
+            btn.innerHTML = isOpen
+              ? '<i class="fa-solid fa-chevron-up"></i> Show less'
+              : '<i class="fa-solid fa-circle-info"></i> Tap for details';
+          });
+          front.appendChild(btn);
+        }
+      });
+    }
+
+    // ── Extracurricular cards: tap-to-expand on mobile ─────
+    function initMobileExtra() {
+      document.querySelectorAll('.extra-flip-card').forEach(card => {
+        const back = card.querySelector('.extra-back');
+        if (!back) return;
+
+        if (!card.querySelector('.extra-mobile-details')) {
+          const details = document.createElement('div');
+          details.className = 'extra-mobile-details';
+          const ul = back.querySelector('ul');
+          if (ul) details.appendChild(ul.cloneNode(true));
+          card.appendChild(details);
+        }
+
+        const front = card.querySelector('.extra-front');
+        if (front && !front.querySelector('.mobile-tap-btn')) {
+          const btn = document.createElement('button');
+          btn.className = 'mobile-tap-btn';
+          btn.style.marginTop = '14px';
+          btn.innerHTML = '<i class="fa-solid fa-circle-info"></i> See contributions';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const det = card.querySelector('.extra-mobile-details');
+            const isOpen = det.classList.toggle('open');
+            btn.innerHTML = isOpen
+              ? '<i class="fa-solid fa-chevron-up"></i> Show less'
+              : '<i class="fa-solid fa-circle-info"></i> See contributions';
+          });
+          front.appendChild(btn);
+        }
+      });
+    }
+
+    // ── Init on load & on resize ──────────────────────────
+    function setupInteractivity() {
+      if (isTouch()) {
+        initMobileProjects();
+        initMobileExtra();
+      }
+    }
+
+    setupInteractivity();
+    window.addEventListener('resize', setupInteractivity);
   </script>
 
 </body>

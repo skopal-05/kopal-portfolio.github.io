@@ -888,40 +888,169 @@ nav .right a span { margin-left: 5px; }
 
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ─── TOUCH / MOBILE: tap-to-flip ───────────────────────── */
+/* On touch devices, hover doesn't fire reliably.
+   We handle flip via JS .flipped class instead.
+   The CSS just needs to respect it. */
+.flip-card.flipped .flip-inner    { transform: rotateY(180deg); }
+.extra-flip-card.flipped .extra-flip-inner { transform: rotateY(180deg); }
+
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
-@media (max-width: 850px) {
+
+/* Tablet — up to 900px */
+@media (max-width: 900px) {
+  .hero-section { padding: 50px 40px; }
   .hero-section .text h2 { font-size: 38px; }
-  .flip-card { height: auto; perspective: none; }
-  .flip-inner { transform: none !important; }
-  .flip-back { display: none; }
-  .flip-front { position: relative; inset: auto; }
-  .flip-hint { display: none; }
-  .extra-flip-card { height: auto; perspective: none; }
-  .extra-flip-inner { transform: none !important; }
-  .extra-back { display: none; }
-  .extra-front { position: relative; inset: auto; height: auto; }
-  .extra-flip-hint { display: none; }
+  .section-wrapper { padding: 70px 36px; }
+  .extra-flip-card { width: 280px; height: 380px; }
 }
 
+/* Phablet / large phone — up to 740px */
 @media (max-width: 740px) {
+  /* Hero */
   .hero-section {
     flex-direction: column-reverse;
-    padding: 40px 24px;
-    margin: 16px 12px 0;
+    padding: 36px 22px 44px;
+    margin: 12px 10px 0;
+    gap: 28px;
+    border-radius: 20px;
+    text-align: center;
   }
-  .hero-section .headshot img { width: 220px; height: 220px; }
-  .section-wrapper { padding: 60px 20px; }
-  .contact-inner { flex-direction: column; align-items: center; }
-  .extra-grid { flex-direction: column; align-items: center; }
+  .hero-section .text h2 { font-size: 32px; }
+  .hero-section .text p { font-size: 14px; margin: 0 auto; }
+  .hero-section .text .links { justify-content: center; }
+  .hero-section .headshot img { width: 200px; height: 200px; }
+
+  /* Sections */
+  .section-wrapper { padding: 56px 18px; }
+
+  /* Skill cells smaller */
+  .skill-group .cells .cell { width: 92px; height: 92px; }
+  .skill-group .cells .cell i { font-size: 24px; }
+  .skill-group .cells .cell span { font-size: 11px; }
+
+  /* Projects flip: disable 3D on mobile, show as stacked tap cards */
+  .flip-card {
+    height: auto;
+    perspective: none;
+    margin-bottom: 16px;
+  }
+  .flip-inner { transform: none !important; transform-style: flat; }
+  .flip-front {
+    position: relative;
+    inset: auto;
+    border-radius: 14px;
+  }
+  .flip-back {
+    display: none; /* shown via tap-expand instead */
+  }
+  .flip-hint { display: none; }
+
+  /* Mobile project tap-expand */
+  .mobile-details {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 0 0 14px 14px;
+    padding: 0 22px;
+  }
+  .mobile-details.open { max-height: 500px; padding: 18px 22px; }
+  .mobile-details p { font-size: 13px; color: rgba(255,255,255,0.92); line-height: 1.7; margin-bottom: 12px; }
+
+  .mobile-tap-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--link-color);
+    background: rgba(108,99,255,0.08);
+    border: 1.5px solid rgba(108,99,255,0.3);
+    border-radius: 8px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mobile-tap-btn:hover, .mobile-tap-btn:active {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-color: transparent;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+
+  /* Extracurricular: disable 3D flip, use accordion */
+  .extra-grid { flex-direction: column; align-items: center; gap: 16px; }
+  .extra-flip-card { width: 100%; max-width: 480px; height: auto; perspective: none; }
+  .extra-flip-inner { transform: none !important; transform-style: flat; }
+  .extra-front {
+    position: relative;
+    inset: auto;
+    border-radius: 20px;
+    height: auto;
+  }
+  .extra-back {
+    display: none; /* shown via tap-expand */
+  }
+  .extra-flip-hint { display: none; }
+
+  /* Mobile extra tap-expand */
+  .extra-mobile-details {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    background: linear-gradient(145deg, #1a1730, #1d2b3a);
+    border-radius: 0 0 20px 20px;
+    border: 1.5px solid rgba(108,99,255,0.25);
+    border-top: none;
+    padding: 0 22px;
+  }
+  .extra-mobile-details.open { max-height: 400px; padding: 16px 22px 20px; }
+  .extra-mobile-details ul { padding-left: 16px; }
+  .extra-mobile-details ul li {
+    font-size: 13px;
+    color: rgba(240,242,255,0.82);
+    line-height: 1.7;
+    margin-bottom: 7px;
+  }
+
+  /* Timeline on mobile */
+  .experience-timeline::before { left: 14px; }
+  .exp-timeline-dot { width: 32px; height: 32px; font-size: 13px; }
+  .exp-timeline-item { gap: 14px; }
+
+  /* Contact */
+  .contact-inner { flex-direction: column; align-items: stretch; }
+  .contact-text-box, .contact-form-box { max-width: 100%; }
 }
 
-@media (max-width: 600px) {
-  nav { padding: 0 20px; }
-  nav .right a { font-size: 18px; }
-  nav .right a:last-child { padding: 6px 12px; }
+/* Small phones — up to 480px */
+@media (max-width: 480px) {
+  nav { padding: 0 16px; height: 60px; }
+  nav .left a { font-size: 16px; }
+  nav .right a { margin: 0 6px; font-size: 16px; }
   nav .right a span { display: none; }
-  .hero-section .text h2 { font-size: 30px; }
-  .skill-group .cells .cell { width: 96px; height: 96px; }
-  .exp-timeline-item { gap: 14px; }
-  .extra-flip-card { width: 100%; max-width: 340px; }
+  nav .right a:last-child { padding: 5px 10px; font-size: 13px; }
+
+  .hero-section { padding: 28px 16px 36px; margin: 8px 8px 0; }
+  .hero-section .text h2 { font-size: 26px; }
+  .hero-section .text p { font-size: 13px; }
+  .hero-section .headshot img { width: 160px; height: 160px; }
+
+  .section-wrapper { padding: 44px 14px; }
+  .section-title { font-size: 28px; }
+
+  .skill-group .cells .cell { width: 82px; height: 82px; }
+  .skill-group .cells .cell i { font-size: 20px; }
+  .skill-group .cells .cell span { font-size: 10px; }
+
+  .exp-card-header h4 { font-size: 14px; }
+  .exp-card-body ul li { font-size: 13px; }
+
+  .extra-flip-card { max-width: 100%; }
+  .extra-front { padding: 22px 18px; }
+  .extra-front h4 { font-size: 15px; }
 }
